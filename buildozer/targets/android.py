@@ -1069,6 +1069,11 @@ class TargetAndroid(Target):
             ("--private", self.buildozer.app_dir),
         ]
 
+        # android.target_sdk_version
+        target_sdk_version = config.getdefault('app', 'android.target_sdk_version', None)
+        if target_sdk_version:
+            build_cmd += [("--android-target-sdk-version", target_sdk_version)]
+
         # add permissions
         permissions = config.getlist('app', 'android.permissions', [])
         for permission in permissions:
